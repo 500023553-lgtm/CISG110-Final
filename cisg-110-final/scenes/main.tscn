@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://cslvj5cind07i"]
+[gd_scene load_steps=25 format=4 uid="uid://cslvj5cind07i"]
 
 [ext_resource type="Texture2D" uid="uid://d8ip37hn34im" path="res://sprites/ninjaCat.png" id="1_o5qli"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_tefeu"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://151gylnblr3u" path="res://sprites/environment tilesets/Wall_1_32x32.png" id="2_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://bj4vvn80427sh" path="res://sprites/item_tileset.png" id="4_tbgi4"]
 [ext_resource type="Texture2D" uid="uid://c3u8spixr5jcp" path="res://sprites/environment tilesets/Borders_32x32.png" id="4_tefeu"]
+[ext_resource type="PackedScene" uid="uid://di6c5n81e25hv" path="res://scenes/teddy.tscn" id="6_o6xl0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0wfyh"]
 radius = 19.0
@@ -3207,13 +3208,6 @@ physics_layer_0/collision_layer = 2
 physics_layer_0/collision_mask = 5
 sources/0 = SubResource("TileSetAtlasSource_o6xl0")
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_tipki"]
-radius = 20.22375
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_85g3d"]
-atlas = ExtResource("4_tbgi4")
-region = Rect2(59.132057, 27.133595, 17.296707, 18.10749)
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_85g3d"]
 radius = 13.038404
 
@@ -3236,8 +3230,8 @@ collision_mask = 6
 script = ExtResource("1_tefeu")
 _kickRight = NodePath("KickRight")
 _kickLeft = NodePath("KickLeft")
-_rightKickDir = Vector2(300, 500)
-_leftKickDir = Vector2(-300, 500)
+_rightKickDir = Vector2(600, -300)
+_leftKickDir = Vector2(-600, -300)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
 position = Vector2(-1, 2)
@@ -3283,20 +3277,6 @@ tile_map_data = PackedByteArray("AAAEAPv/AAAGAAEAAAAGAPv/AAAGAAEAAAAFAPv/AAAGAAE
 tile_set = SubResource("TileSet_tipki")
 collision_visibility_mode = 1
 
-[node name="Teddy" type="RigidBody2D" parent="."]
-collision_layer = 4
-collision_mask = 15
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Teddy"]
-position = Vector2(186, -82)
-shape = SubResource("CircleShape2D_tipki")
-
-[node name="Sprite2D" type="Sprite2D" parent="Teddy"]
-z_index = 10
-position = Vector2(186, -84)
-scale = Vector2(2, 2)
-texture = SubResource("AtlasTexture_85g3d")
-
 [node name="Red Bull Can" type="RigidBody2D" parent="."]
 collision_layer = 4
 collision_mask = 15
@@ -3323,6 +3303,11 @@ shape = SubResource("CircleShape2D_o6xl0")
 position = Vector2(181, -427)
 scale = Vector2(2.134, 2)
 texture = SubResource("AtlasTexture_tipki")
+
+[node name="Teddy" parent="." instance=ExtResource("6_o6xl0")]
+
+[node name="Teddy2" parent="." instance=ExtResource("6_o6xl0")]
+position = Vector2(112, 88)
 
 [connection signal="body_shape_entered" from="player/KickRight" to="player" method="_on_kick_right_body_shape_entered"]
 [connection signal="body_shape_entered" from="player/KickLeft" to="player" method="_on_kick_left_body_shape_entered"]
