@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://cslvj5cind07i"]
+[gd_scene load_steps=26 format=4 uid="uid://cslvj5cind07i"]
 
 [ext_resource type="Texture2D" uid="uid://d8ip37hn34im" path="res://sprites/ninjaCat.png" id="1_o5qli"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_tefeu"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bj4vvn80427sh" path="res://sprites/item_tileset.png" id="4_tbgi4"]
 [ext_resource type="Texture2D" uid="uid://c3u8spixr5jcp" path="res://sprites/environment tilesets/Borders_32x32.png" id="4_tefeu"]
 [ext_resource type="PackedScene" uid="uid://di6c5n81e25hv" path="res://scenes/teddy.tscn" id="6_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://bxfk8skgf0y87" path="res://scenes/rat.tscn" id="8_tipki"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0wfyh"]
 radius = 19.0
@@ -3305,9 +3306,13 @@ scale = Vector2(2.134, 2)
 texture = SubResource("AtlasTexture_tipki")
 
 [node name="Teddy" parent="." instance=ExtResource("6_o6xl0")]
+position = Vector2(-351, 88)
 
 [node name="Teddy2" parent="." instance=ExtResource("6_o6xl0")]
 position = Vector2(112, 88)
+
+[node name="Rat" parent="." instance=ExtResource("8_tipki")]
+position = Vector2(310, -1)
 
 [connection signal="body_shape_entered" from="player/KickRight" to="player" method="_on_kick_right_body_shape_entered"]
 [connection signal="body_shape_entered" from="player/KickLeft" to="player" method="_on_kick_left_body_shape_entered"]
