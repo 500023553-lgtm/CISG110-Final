@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bxfk8skgf0y87"]
+[gd_scene format=3 uid="uid://bxfk8skgf0y87"]
 
 [ext_resource type="Texture2D" uid="uid://cuj4o813khoi4" path="res://sprites/Rat-Chocolate-Walk.png" id="1_1l88y"]
 [ext_resource type="Script" uid="uid://c2gg5602o4i1o" path="res://Scripts/rat.gd" id="1_77a1s"]
+[ext_resource type="PackedScene" uid="uid://rgwrnmsghqsx" path="res://scenes/explosion_vfx.tscn" id="3_acf8p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_85g3d"]
 atlas = ExtResource("1_1l88y")
@@ -42,17 +43,21 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_77a1s"]
 size = Vector2(64, 26)
 
-[node name="Rat" type="RigidBody2D"]
+[node name="Rat" type="RigidBody2D" unique_id=2067680115]
 collision_layer = 16
 collision_mask = 3
 script = ExtResource("1_77a1s")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=741553066]
 z_index = 20
 position = Vector2(-420, 5)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_a8y0u")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=245173042]
 position = Vector2(-420, 8)
 shape = SubResource("RectangleShape2D_77a1s")
+
+[node name="ExplosionVFX" parent="." unique_id=297898422 instance=ExtResource("3_acf8p")]
+
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

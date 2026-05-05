@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://2dnkhpeqvm6i"]
+
+[ext_resource type="Texture2D" uid="uid://bj4vvn80427sh" path="res://sprites/item_tileset.png" id="1_20djd"]
+[ext_resource type="Script" uid="uid://ko8sk6k43dnc" path="res://scripts/red_bull_can.gd" id="1_pmv57"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_85g3d"]
+radius = 13.038404
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_choun"]
+atlas = ExtResource("1_20djd")
+region = Rect2(49.537697, 1.4585552, 7.283531, 10.999626)
+
+[node name="Red Bull Can" type="RigidBody2D" unique_id=354021297]
+collision_layer = 4
+collision_mask = 15
+script = ExtResource("1_pmv57")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1004367111]
+position = Vector2(-86, -233)
+shape = SubResource("CircleShape2D_85g3d")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1254487386]
+position = Vector2(-88, -233)
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_choun")
