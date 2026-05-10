@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://vxruglm8i065" path="res://scenes/glass_bottle.tscn" id="7_choun"]
 [ext_resource type="PackedScene" uid="uid://bxfk8skgf0y87" path="res://scenes/rat.tscn" id="8_tipki"]
 [ext_resource type="PackedScene" uid="uid://rgwrnmsghqsx" path="res://scenes/explosion_vfx.tscn" id="9_choun"]
+[ext_resource type="FontFile" uid="uid://cpo4iodkc5tqw" path="res://fonts/Minecraft.ttf" id="11_ya4ey"]
+[ext_resource type="Script" uid="uid://b50a0lmb1axub" path="res://Scripts/points_label.gd" id="12_eb6dy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0wfyh"]
 radius = 19.0
@@ -31,6 +33,62 @@ region = Rect2(143, 22, 32, 32)
 atlas = ExtResource("1_o5qli")
 region = Rect2(207, 22, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_dp3eg"]
+atlas = ExtResource("1_o5qli")
+region = Rect2(15, 726, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ld40"]
+atlas = ExtResource("1_o5qli")
+region = Rect2(79, 726, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqmmt"]
+atlas = ExtResource("1_o5qli")
+region = Rect2(143, 726, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yc10j"]
+atlas = ExtResource("1_o5qli")
+region = Rect2(207, 726, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jscy8"]
+atlas = ExtResource("1_o5qli")
+region = Rect2(271, 726, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pm3ni"]
+atlas = ExtResource("1_o5qli")
+region = Rect2(335, 726, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_choun"]
+atlas = ExtResource("1_o5qli")
+region = Rect2(15, 86, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ya4ey"]
+atlas = ExtResource("1_o5qli")
+region = Rect2(79, 86, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eb6dy"]
+atlas = ExtResource("1_o5qli")
+region = Rect2(143, 86, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trceg"]
+atlas = ExtResource("1_o5qli")
+region = Rect2(207, 86, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8y0u"]
+atlas = ExtResource("1_o5qli")
+region = Rect2(271, 86, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jkv2x"]
+atlas = ExtResource("1_o5qli")
+region = Rect2(335, 86, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jbj1t"]
+atlas = ExtResource("1_o5qli")
+region = Rect2(399, 86, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_muem4"]
+atlas = ExtResource("1_o5qli")
+region = Rect2(463, 86, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_o6xl0"]
 animations = [{
 "frames": [{
@@ -48,6 +106,58 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dp3eg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ld40")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gqmmt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yc10j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jscy8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pm3ni")
+}],
+"loop": true,
+"name": &"kicking",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_choun")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ya4ey")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eb6dy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_trceg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8y0u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jkv2x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jbj1t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_muem4")
+}],
+"loop": true,
+"name": &"walking",
 "speed": 5.0
 }]
 
@@ -3211,8 +3321,10 @@ physics_layer_0/collision_layer = 2
 physics_layer_0/collision_mask = 5
 sources/0 = SubResource("TileSetAtlasSource_o6xl0")
 
+[sub_resource type="LabelSettings" id="LabelSettings_eb6dy"]
+font = ExtResource("11_ya4ey")
+
 [node name="Main" type="Node2D" unique_id=737060058]
-position = Vector2(-2, -13)
 
 [node name="player" type="CharacterBody2D" parent="." unique_id=1535768928 node_paths=PackedStringArray("_kickRight", "_kickLeft")]
 z_index = 100
@@ -3288,6 +3400,18 @@ _explosion_VFX = NodePath("../ExplosionVFX")
 position = Vector2(612, -1)
 _speed = 50.0
 _explosion_VFX = NodePath("../ExplosionVFX")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1507615440]
+
+[node name="PointsLabel" type="Label" parent="CanvasLayer" unique_id=1612374639]
+unique_name_in_owner = true
+offset_left = 5.0
+offset_top = 3.0
+offset_right = 54.0
+offset_bottom = 26.0
+text = "points: 0"
+label_settings = SubResource("LabelSettings_eb6dy")
+script = ExtResource("12_eb6dy")
 
 [connection signal="body_shape_entered" from="player/KickRight" to="player" method="_on_kick_right_body_shape_entered"]
 [connection signal="body_shape_entered" from="player/KickLeft" to="player" method="_on_kick_left_body_shape_entered"]

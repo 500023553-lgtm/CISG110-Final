@@ -16,10 +16,6 @@ func _ready() -> void:
 	contact_monitor = true
 	
 
-
-
-
-
 func _on_body_shape_entered(body_rid: RID, body: Node, body_shape_index: int, local_shape_index: int) -> void:
 	if body is Player:
 		_explosion_VFX.emitting = true
