@@ -127,7 +127,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pm3ni")
 }],
-"loop": true,
+"loop": false,
 "name": &"kicking",
 "speed": 5.0
 }, {
@@ -3342,7 +3342,7 @@ shape = SubResource("CapsuleShape2D_0wfyh")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="player" unique_id=852314773]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_o6xl0")
-animation = &"idle"
+animation = &"kicking"
 
 [node name="Camera2D" type="Camera2D" parent="player" unique_id=998699303]
 
@@ -3394,12 +3394,15 @@ position = Vector2(112, 88)
 
 [node name="Rat" parent="." unique_id=549311426 node_paths=PackedStringArray("_explosion_VFX") instance=ExtResource("8_tipki")]
 position = Vector2(310, -1)
+_speed = null
 _explosion_VFX = NodePath("../ExplosionVFX")
+move_right = null
 
 [node name="Rat2" parent="." unique_id=1613048398 node_paths=PackedStringArray("_explosion_VFX") instance=ExtResource("8_tipki")]
 position = Vector2(612, -1)
 _speed = 50.0
 _explosion_VFX = NodePath("../ExplosionVFX")
+move_right = null
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1507615440]
 
@@ -3412,6 +3415,9 @@ offset_bottom = 26.0
 text = "points: 0"
 label_settings = SubResource("LabelSettings_eb6dy")
 script = ExtResource("12_eb6dy")
+
+[node name="Teddy3" parent="." unique_id=1357723485 instance=ExtResource("6_o6xl0")]
+position = Vector2(40, -7)
 
 [connection signal="body_shape_entered" from="player/KickRight" to="player" method="_on_kick_right_body_shape_entered"]
 [connection signal="body_shape_entered" from="player/KickLeft" to="player" method="_on_kick_left_body_shape_entered"]

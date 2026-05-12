@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://di6c5n81e25hv"]
+[gd_scene format=3 uid="uid://di6c5n81e25hv"]
 
 [ext_resource type="Script" uid="uid://8iovealbp7wf" path="res://Scripts/prop.gd" id="1_aidnh"]
 [ext_resource type="Texture2D" uid="uid://bj4vvn80427sh" path="res://sprites/item_tileset.png" id="1_rgc40"]
@@ -14,24 +14,24 @@ radius = 20.22375
 atlas = ExtResource("1_rgc40")
 region = Rect2(59.132057, 27.133595, 17.296707, 18.10749)
 
-[node name="Teddy" type="RigidBody2D" node_paths=PackedStringArray("_explosion_VFX")]
+[node name="Teddy" type="RigidBody2D" unique_id=84371275 node_paths=PackedStringArray("_explosion_VFX")]
 collision_layer = 4
 collision_mask = 15
 physics_material_override = SubResource("PhysicsMaterial_rgc40")
 script = ExtResource("1_aidnh")
 _explosion_VFX = NodePath("ExplosionVFX")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1738755669]
 position = Vector2(186, -82)
 shape = SubResource("CircleShape2D_tipki")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1499593540]
 z_index = 10
 position = Vector2(186, -84)
 scale = Vector2(2, 2)
 texture = SubResource("AtlasTexture_85g3d")
 
-[node name="ExplosionVFX" parent="." instance=ExtResource("3_t4g8a")]
+[node name="ExplosionVFX" parent="." unique_id=505342463 instance=ExtResource("3_t4g8a")]
 position = Vector2(185, -79)
 
 [connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

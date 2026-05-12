@@ -1,6 +1,8 @@
 class_name Prop
 extends RigidBody2D
 
+
+
 @export var _explosion_VFX: CPUParticles2D
 
 var _was_kicked: bool = false
@@ -17,5 +19,4 @@ func _on_body_shape_entered(body_rid: RID, body: Node, body_shape_index: int, lo
 		_explosion_VFX.reparent(get_parent())
 		
 		queue_free()
-
 	

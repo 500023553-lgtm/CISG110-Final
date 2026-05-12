@@ -10,7 +10,7 @@ func _physics_process(delta: float) -> void:
 	linear_velocity.x = -_speed
 
 	move_and_collide(linear_velocity * delta)
-	
+
 func _ready() -> void:
 	max_contacts_reported = 3
 	contact_monitor = true
