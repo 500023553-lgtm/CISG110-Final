@@ -14,6 +14,9 @@ func _ready() -> void:
 
 func _on_body_shape_entered(body_rid: RID, body: Node, body_shape_index: int, local_shape_index: int) -> void:
 	if _was_kicked:
+		if %PointsLabel:
+				var current_score = int (%PointsLabel.text)
+				%PointsLabel.text = "POINTS:" + str(current_score + 10) 
 		_explosion_VFX.emitting = true
 		
 		_explosion_VFX.reparent(get_parent())

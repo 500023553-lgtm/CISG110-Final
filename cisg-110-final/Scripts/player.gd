@@ -9,11 +9,10 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -500.0
 
 @export var movment_speed: float = 400.0
-@export var max_kick_time: float = 15
+@export var max_kick_time: float = 0.5
 
+var kick_timer: float = 0.0
 
-var kick_timer: float = 5.0
-var _kick_timer = 15
 
 @export var _kickRight: Node2D
 @export var _kickLeft: Node2D
@@ -26,7 +25,7 @@ var _facingRight: bool = true
 
 func _enter_tree() -> void:
 	_disableKick()
-
+	score = 0
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
@@ -51,24 +50,25 @@ func _physics_process(delta: float) -> void:
 		_facingRight = false
 		_anims.flip_h = true
 
-	if _kick_timer > 0:
-		_kick_timer -= delta 
-	if _kick_timer <= 0:
-		_disableKick()
+	if kick_timer > 0:
+		kick_timer -= delta
+		if kick_timer <= 0:
+			_disableKick()
 	
+
 	if Input.is_action_just_pressed("ui_accept"):
 		_kick()
-
-
-
-
-
-	if velocity.x == 0 && velocity.y == 0:
-		_anims.play("idle")
-	else:
-		_anims.play("walking")
+		_anims.play("kicking")
 		
-		move_and_slide()
+	if kick_timer <= 0:
+		if velocity.x == 0 && velocity.y == 0:
+			_anims.play("idle")
+		else:
+			_anims.play("walking")
+	else:
+		_anims.play("kicking")
+
+	move_and_slide()
 	
 func _kick() -> void:
 	if _facingRight:
@@ -86,7 +86,7 @@ func _disableKick() -> void:
 func _on_kick_right_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
 	print(body.name)
 	body.apply_central_impulse(_rightKickDir)
-	
+	score += 10
 	if body is Prop:
 		body._was_kicked = true
 
@@ -96,3 +96,12 @@ func _on_kick_left_body_shape_entered(body_rid: RID, body: Node2D, body_shape_in
 	
 	if body is Prop:
 		body._was_kicked = true
+		score += 10
+		
+		
+@export var score: int = 0:
+		set(value):
+				score = value
+				if %PointsLabel:
+						%PointsLabel.text = "points" + str(score)
+	

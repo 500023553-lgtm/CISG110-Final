@@ -129,7 +129,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"kicking",
-"speed": 5.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -3394,15 +3394,12 @@ position = Vector2(112, 88)
 
 [node name="Rat" parent="." unique_id=549311426 node_paths=PackedStringArray("_explosion_VFX") instance=ExtResource("8_tipki")]
 position = Vector2(310, -1)
-_speed = null
 _explosion_VFX = NodePath("../ExplosionVFX")
-move_right = null
 
 [node name="Rat2" parent="." unique_id=1613048398 node_paths=PackedStringArray("_explosion_VFX") instance=ExtResource("8_tipki")]
 position = Vector2(612, -1)
 _speed = 50.0
 _explosion_VFX = NodePath("../ExplosionVFX")
-move_right = null
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1507615440]
 
@@ -3417,7 +3414,10 @@ label_settings = SubResource("LabelSettings_eb6dy")
 script = ExtResource("12_eb6dy")
 
 [node name="Teddy3" parent="." unique_id=1357723485 instance=ExtResource("6_o6xl0")]
-position = Vector2(40, -7)
+position = Vector2(-9, -8)
+
+[node name="Teddy4" parent="." unique_id=84371275 instance=ExtResource("6_o6xl0")]
+position = Vector2(67, -5)
 
 [connection signal="body_shape_entered" from="player/KickRight" to="player" method="_on_kick_right_body_shape_entered"]
 [connection signal="body_shape_entered" from="player/KickLeft" to="player" method="_on_kick_left_body_shape_entered"]

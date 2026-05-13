@@ -3,7 +3,7 @@ class_name Rat
 @export var _speed: float = -50.0
 @export var _explosion_VFX: CPUParticles2D
 @export var move_right: bool = false
-
+var is_dead: bool = false
 
 
 func _physics_process(delta: float) -> void:
@@ -18,8 +18,7 @@ func _ready() -> void:
 
 func _on_body_shape_entered(body_rid: RID, body: Node, body_shape_index: int, local_shape_index: int) -> void:
 	if body is Player:
+		body.score -= 5
 		_explosion_VFX.emitting = true
-		
 		_explosion_VFX.reparent(get_parent())
-		
 		queue_free()
